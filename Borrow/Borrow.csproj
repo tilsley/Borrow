@@ -34,8 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -67,13 +70,16 @@
     <Compile Include="Models\BookModel.cs" />
     <Compile Include="ViewModels\BorrowViewModel.cs" />
     <Compile Include="ViewModels\BorrowViewModelBase.cs" />
+    <Compile Include="ViewModels\CheckOutViewModel.cs" />
     <Compile Include="ViewModels\GoToLibraryViewModel.cs" />
     <Compile Include="ViewModels\LookUpInCatalogViewModel.cs" />
-    <Compile Include="ViewModels\StartBorrowingViewModel.cs" />
     <Compile Include="ViewModels\TakeFromShelfViewModel.cs" />
     <Compile Include="ViewModels\UseSearchEngineViewModel.cs" />
     <Compile Include="Views\BorrowView.xaml.cs">
       <DependentUpon>BorrowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CheckOutView.xaml.cs">
+      <DependentUpon>CheckOutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GoToLibraryView.xaml.cs">
       <DependentUpon>GoToLibraryView.xaml</DependentUpon>
@@ -81,15 +87,13 @@
     <Compile Include="Views\LookUpInCatalogView.xaml.cs">
       <DependentUpon>LookUpInCatalogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StartBorrowingView.xaml.cs">
-      <DependentUpon>StartBorrowingView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\TakeFromShelfView.xaml.cs">
       <DependentUpon>TakeFromShelfView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UseSearchEngineView.xaml.cs">
       <DependentUpon>UseSearchEngineView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="XMLDeserialization\DeserializeXML.cs" />
     <Page Include="BorrowWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,15 +118,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CheckOutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\GoToLibraryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LookUpInCatalogView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\StartBorrowingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,7 +166,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="XMLDeserialization\Data.xml">
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

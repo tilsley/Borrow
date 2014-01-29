@@ -4,6 +4,7 @@
         xmlns:view="clr-namespace:Borrow.Views" 
         WindowStartupLocation="CenterScreen"
         WindowStyle="ToolWindow"
-        Title="BorrowWindow" Height="500" Width="500">
+        Title="BorrowWindow" Height="500" Width="700"
+        x:Name="borrowWindow">
   <view:BorrowView />
 </Window>

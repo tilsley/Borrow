@@ -4,16 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Borrow.HelperClasses;
+using System.IO;
+using System.Xml.Serialization;
+using System.Collections.ObjectModel;
 
 namespace Borrow.Models
 {
+  [XmlRoot("Database")]
+  public class Database
+  {
+    [XmlArray("books")]
+    public ObservableCollection<BookModel> allBooks = new ObservableCollection<BookModel>();
+  }
+
+  [XmlRoot("BookModel")]
   public class BookModel : ObservableObject
   {
     #region Fields;
 
+    [XmlElement(ElementName = "ID")]
     private int _id;
+    [XmlElement(ElementName = "Author")]
     private string _author;
+    [XmlElement(ElementName = "Title")]
     private string _title;
+    [XmlElement(ElementName = "Location")]
+    private string _location;
 
     #endregion Fields;
 
@@ -32,7 +48,7 @@ namespace Borrow.Models
       }
     }
 
-    public string author
+    public string Author
     {
       get { return _author; }
       set
@@ -40,12 +56,25 @@ namespace Borrow.Models
         if (value != _author)
         {
           _author = value;
-          OnPropertyChanged("author");
+          OnPropertyChanged("Author");
         }
       }
     }
 
-    public string title
+    public string Location
+    {
+      get { return _location; }
+      set
+      {
+        if (value != _location)
+        {
+          _location = value;
+          OnPropertyChanged("Location");
+        }
+      }
+    }
+
+    public string Title
     {
       get { return _title; }
       set
@@ -53,7 +82,7 @@ namespace Borrow.Models
         if (value != _title)
         {
           _title = value;
-          OnPropertyChanged("title");
+          OnPropertyChanged("Title");
         }
       }
     }
@@ -65,11 +94,11 @@ namespace Borrow.Models
     public BookModel()
     { }
 
-    public BookModel(int reqId, string reqAuthor, string reqTitle)
+    public BookModel(int reqId, string reqAuthor, string reqTitle, string reqLocation)
     {
       id = reqId;
-      author = reqAuthor;
-      title = reqTitle;
+      Author = reqAuthor;
+      Title = reqTitle;
     }
 
     #endregion Constructors

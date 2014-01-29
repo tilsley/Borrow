@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Borrow.Views
 {
   /// <summary>
-  /// Interaction logic for StartBorrowingView.xaml
+  /// Interaction logic for CheckOutView.xaml
   /// </summary>
-  public partial class StartBorrowingView : UserControl
+  public partial class CheckOutView : UserControl
   {
-    public StartBorrowingView()
+    public CheckOutView()
     {
       InitializeComponent();
     }

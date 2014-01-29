@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
+using Borrow.Models;
 
 namespace Borrow.ViewModels
 {
@@ -10,7 +11,8 @@ namespace Borrow.ViewModels
   {
     #region Fields
 
-    bool _isCurrentPage;
+    private BookModel _bookToBorrow;
+    private bool _isCurrentPage;
     private bool _hasBeenCompleted;
     private bool _isChecked;
 
@@ -18,12 +20,37 @@ namespace Borrow.ViewModels
 
     #region Constructor
 
-    public BorrowViewModelBase() { }
+    public BorrowViewModelBase(BookModel bookToBorrow) 
+    {
+      _bookToBorrow = bookToBorrow;
+    }
+
+    public BorrowViewModelBase() {}
 
     #endregion Constructor
 
     #region Properties
 
+    /// <summary>
+    /// Holds the current book that is being borrow,
+    /// is initially null.
+    /// </summary>
+    public BookModel BookToBorrow
+    {
+      get { return _bookToBorrow; }
+      set
+      {
+        if (value != _bookToBorrow)
+        {
+          _bookToBorrow = value;
+          OnPropertyChanged("BookToBorrow");
+        }
+      }
+    }
+
+    /// <summary>
+    /// Returns whether the task has been completed
+    /// </summary>
     public virtual bool HasBeenCompleted
     { 
       get { return _hasBeenCompleted; } 
@@ -37,6 +64,9 @@ namespace Borrow.ViewModels
       }
     }
 
+    /// <summary>
+    /// Displays the current task been performed, all tasks have different name
+    /// </summary>
     public abstract string DisplayName { get; }
 
     public bool isChecked
@@ -78,7 +108,7 @@ namespace Borrow.ViewModels
     /// </summary>
     internal abstract bool IsValid();
 
-    #endregion // Methods
+    #endregion Methods
 
     #region INotifyPropertyChanged Members
 

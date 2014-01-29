@@ -21,9 +21,10 @@ namespace Borrow
     protected override void OnStartup(StartupEventArgs e)
     {
       base.OnStartup(e);
-      logViewer = new LogViewer(); BorrowWindow app = new BorrowWindow();
+      logViewer = new LogViewer(); 
+      BorrowWindow app = new BorrowWindow();
       logViewer.generateLogEntry("LogViewer Has been instantiated", "OnStartup");
-      BorrowViewModel context = new BorrowViewModel();
+      BorrowViewModel context = m();
       app.DataContext = context;
       app.Show();
       logViewer.Show();
@@ -32,6 +33,12 @@ namespace Borrow
     public static new App Current
     {
       get { return Application.Current as App; }
+    }
+
+    public static BorrowViewModel m()
+    {
+      BorrowViewModel context = new BorrowViewModel();
+      return context;
     }
   }
 }

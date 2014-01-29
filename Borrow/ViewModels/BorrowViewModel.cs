@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 using Borrow.HelperClasses;
 using System.Windows;
+using Borrow.Models;
 
 namespace Borrow.ViewModels
 {
@@ -24,6 +25,7 @@ namespace Borrow.ViewModels
     RelayCommand _moveNextCommand;
     RelayCommand _movePreviousCommand;
     ReadOnlyCollection<BorrowViewModelBase> _pages;
+    private BookModel _bookToBorrow;
 
     #endregion // Fields
 
@@ -31,6 +33,7 @@ namespace Borrow.ViewModels
 
     public BorrowViewModel()
     {
+      _bookToBorrow = new BookModel();
       this.CurrentPage = this.Pages[0];
       this.Pages[0].IsCurrentPage = true;
       App.Current.logViewer.generateLogEntry("create view model for whole screen", "BorrowViewModel");     
@@ -121,7 +124,7 @@ namespace Borrow.ViewModels
 
 
     /// <summary>
-    /// When meoving to next page checiks if there is tick box, which means 
+    /// When moving to next page checks if there is tick box, which means 
     /// a user needs to perform a task. Then a new task is added to the system.
     /// </summary>
     void MoveToNextPage()
@@ -131,7 +134,7 @@ namespace Borrow.ViewModels
         if (this.CurrentPage.isChecked)
         {
           List<BorrowViewModelBase> temp = new List<BorrowViewModelBase>(Pages);
-          temp.Insert(3, new UseSearchEngineViewModel());
+          temp.Insert(3, new UseSearchEngineViewModel(this.BookToBorrow));
           Pages = new ReadOnlyCollection<BorrowViewModelBase>(temp);
           this.CurrentPage.isChecked = false;
           App.Current.logViewer.generateLogEntry("User moves to next page and another task has been added", "MoveToNextPage");
@@ -159,9 +162,10 @@ namespace Borrow.ViewModels
 
     #region Properties
 
-    /// <summary>
-    /// Returns true if the change flow events button is checked
-    /// </summary>
+    public BookModel BookToBorrow
+    {
+      get { return _bookToBorrow; }
+    }
 
     /// <summary>
     /// Returns the page ViewModel that the user is currently viewing.
@@ -239,10 +243,10 @@ namespace Borrow.ViewModels
     {
       var pages = new List<BorrowViewModelBase>();
 
-      pages.Add(new StartBorrowingViewModel());
       pages.Add(new GoToLibraryViewModel());
-      pages.Add(new LookUpInCatalogViewModel());
+      pages.Add(new LookUpInCatalogViewModel(this.BookToBorrow));
       pages.Add(new TakeFromShelfViewModel());
+      pages.Add(new CheckOutViewModel(this.BookToBorrow));
 
       _currentPage = pages[0];
 

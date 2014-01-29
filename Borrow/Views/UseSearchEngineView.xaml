@@ -3,11 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Borrow.Models"
+             xmlns:viewmodels="clr-namespace:Borrow.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-    <TextBlock Text="UseSearchEngine" 
-                   FontWeight="Bold" FontSize="18"
-                   HorizontalAlignment="Center" VerticalAlignment="Center" />
-  </Grid>
+             d:DesignHeight="500" d:DesignWidth="450">
+  <UserControl.Resources>
+    <DataTemplate DataType="{x:Type local:BookModel}">
+    <Border BorderBrush="Black" BorderThickness="1" Padding="20">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition />
+          <RowDefinition />
+          <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0"  Text="Title" VerticalAlignment="Center" />
+        <TextBlock Grid.Row="0" Grid.Column="1"  Text="{Binding Title}" />
+
+        <TextBlock Grid.Column="0" Grid.Row="1"  Text="Author" VerticalAlignment="Center" />
+        <TextBlock Grid.Row="1" Grid.Column="1"  Text="{Binding Author}" />
+
+      </Grid>
+    </Border>
+    </DataTemplate>
+  </UserControl.Resources>
+  
+  <DockPanel Margin="20">
+    <DockPanel DockPanel.Dock="Top">
+      <TextBlock Margin="10,2" DockPanel.Dock="Left" Text="Enter Book Id" VerticalAlignment="Center" />
+
+      <TextBox Margin="10,2" Width="50" VerticalAlignment="Center" Text="{Binding Path=bookID, UpdateSourceTrigger=PropertyChanged}" />
+
+      <Button Content="Get Book" Margin="10,2" VerticalAlignment="Center"
+                        Command="{Binding Path=getBookCommand}" IsDefault="True" Width="100" />
+    </DockPanel>
+
+    <ContentControl Margin="20,10" Content="{Binding Path=CurrentBook}" />
+  </DockPanel>
 </UserControl>

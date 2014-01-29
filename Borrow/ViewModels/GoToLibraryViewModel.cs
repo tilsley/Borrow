@@ -12,7 +12,6 @@ namespace Borrow.ViewModels
     #region Fields
 
     private string _goToLibraryString;
-    private bool _hasBeenCompleted;
     private ICommand _goToLibraryCommand;
 
     #endregion Fields

@@ -8,10 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
   <UserControl.Resources>
-    <DataTemplate DataType="{x:Type viewModel:StartBorrowingViewModel}">
-      <view:StartBorrowingView />
-    </DataTemplate>
-
     <DataTemplate DataType="{x:Type viewModel:GoToLibraryViewModel}">
       <view:GoToLibraryView />
     </DataTemplate>
@@ -26,6 +22,10 @@
 
     <DataTemplate DataType="{x:Type viewModel:UseSearchEngineViewModel}">
       <view:UseSearchEngineView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModel:CheckOutViewModel}">
+      <view:CheckOutView />
     </DataTemplate>
 
     <!-- set the button styles -->
@@ -112,6 +112,7 @@
             />
         </MultiDataTrigger>
 
+        <!-- will only trigger if task has not been completed and is not current task, shows green !-->
         <MultiDataTrigger>
           <MultiDataTrigger.Conditions>
             <Condition Binding="{Binding Path=HasBeenCompleted}" Value="False"/>

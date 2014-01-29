@@ -7,23 +7,29 @@ using System.Windows.Input;
 using Borrow.Models;
 using Borrow.HelperClasses;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
+using System.Windows;
+using Borrow.XMLDeserialization;
 
 namespace Borrow.ViewModels
 {
   public class LookUpInCatalogViewModel : BorrowViewModelBase
   {
-
     #region Fields
 
-    private BookModel _bookModel;
-    private int _bookID;
+    private BookModel _selectedBook;
     private bool _isChecked;
-    private ICommand _checkCommand;
+    private ObservableCollection<BookModel> _catalog;
 
     #endregion Fields
 
-    #region Properties / Commands
+    #region Properties
 
+    /// <summary>
+    /// Is bound to the checkbox on UI.
+    /// Updates everytime the user clicks the UI button.
+    /// </summary>
     public new bool isChecked
     {
       get { return _isChecked; }
@@ -31,7 +37,6 @@ namespace Borrow.ViewModels
       {
         if (value != _isChecked)
         {
-          Debug.WriteLine(_isChecked);
           _isChecked = value;
           OnPropertyChanged("isChecked");
           if (_isChecked)
@@ -47,32 +52,46 @@ namespace Borrow.ViewModels
       get { return "LookUpInCatalog"; }
     }
 
-    public BookModel bookModel
+    /// <summary>
+    /// Property that holds the current book the user has selected
+    /// </summary>
+    public BookModel SelectedBook
     {
-      get { return _bookModel; }
+      get { return _selectedBook; }
       set
       {
-        if (value != _bookModel)
+        if (value != _selectedBook)
         {
-          _bookModel = value;
-          OnPropertyChanged("bookModel");
+          _selectedBook = value;
+          BookToBorrow.Author = _selectedBook.Author;
+          BookToBorrow.Title = _selectedBook.Title;
+          BookToBorrow.Location = _selectedBook.Location;
+          OnPropertyChanged("SelectedBook");
         }
       }
     }
 
-    #endregion Properties / Commands
-    #region Helpers
+    #endregion Properties
 
-    private void getBook()
+    #region Data
+
+    /// <summary>
+    /// Collection
+    /// </summary>
+    public ObservableCollection<BookModel> Catalog
     {
-      BookModel b = new BookModel(1, "tim", "title");
-      bookModel = b;
+      get { return _catalog; }
+      set
+      {
+        if (_catalog != value)
+        {
+          _catalog = value;
+          OnPropertyChanged("Catalog");
+        }
+      }
     }
 
-    #endregion Helpers
-
-    public LookUpInCatalogViewModel()
-    { }
+    #endregion Data
 
     #region Methods
 
@@ -82,5 +101,23 @@ namespace Borrow.ViewModels
     }
 
     #endregion Methods
+
+    #region Constructors
+
+    public LookUpInCatalogViewModel(BookModel bookToBorrow) : base(bookToBorrow)
+    {
+      initialiseCollections();
+    }
+
+    public void initialiseCollections()
+    {
+      Catalog = new ObservableCollection<BookModel>();
+      Catalog.Add(new BookModel() { Title = "title", Author = "author", Location = "shelf1" });
+      Catalog.Add(new BookModel() { Title = "cheese", Author = "Terry", Location = "shelf2" });
+      DeserializeXML xmlObj = new DeserializeXML();
+      Catalog = xmlObj.DeserializeObject("LookUpInCatalog");
+    }
+
+    #endregion Constructors
   }
 }

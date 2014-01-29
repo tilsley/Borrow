@@ -1,0 +1,103 @@
+﻿<Data>
+  <Database Task="UseSearchEngine">
+    <books>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Philosiphers stone</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Chamber of Secrets</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Prisoner of Azkaban</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Goblet of Fire</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Order of the Phoenix</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+    </books>
+  </Database>
+  <Database Task="UseSearchEngine">
+    <books>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Philosiphers stone</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Chamber of Secrets</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Prisoner of Azkaban</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Goblet of Fire</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Order of the Phoenix</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+    </books>
+  </Database><Database Task="LookUpInCatalog">
+    <books>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Philosiphers stone</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Chamber of Secrets</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Prisoner of Azkaban</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Goblet of Fire</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+      <BookModel>
+        <Author>J.K. Rowling</Author>
+        <Title>Harry Potter and the Order of the Phoenix</Title>
+        <ID>2</ID>
+        <Location>Shelf1</Location>
+      </BookModel>
+    </books>
+  </Database>
+</Data>
